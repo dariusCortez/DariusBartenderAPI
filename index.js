@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const version = "1.0";
 
 
 const path = require('path');
@@ -15,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 app.get("/", (req, res) => {
     const urlActual = req.get('host');
-    res.render('urlsApi', { URLActual: urlActual });
+    res.render('urlsApi', { URLActual: urlActual, Version: version });
 });
 
 
@@ -396,5 +397,6 @@ app.delete("/Bebida/:idBebida", (req, res) => {
 
 
 app.listen(port, () => {
-    console.log('Mi puerto:', port);
+    console.log('Puerto:', port);
+    console.log('Version: ', version);
 });
