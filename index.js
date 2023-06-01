@@ -15,7 +15,9 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 
 app.get("/", (req, res) => {
-    const urlActual = req.get('host');
+    const protocolo = req.protocol;
+    const hostname = req.get('host');
+    const urlActual = `${protocolo}://${hostname}`;
     res.render('urlsApi', { URLActual: urlActual, Version: version });
 });
 
