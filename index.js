@@ -1,12 +1,15 @@
 const express = require("express");
+//const enforce = require('express-sslify');
+const path = require('path');
+
 const app = express();
 const port = 3000;
 const version = "1.0";
 
 
-const path = require('path');
-
 app.use(express.json());
+
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 app.set('view engine', 'ejs');
 
