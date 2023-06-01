@@ -7,7 +7,7 @@ const path = require('path');
 
 const app = express();
 const port = 3000;
-const version = "1.0";
+const version = "1.2";
 
 
 app.use(express.json());

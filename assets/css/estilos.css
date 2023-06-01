@@ -21,7 +21,7 @@ body {
 .card-title {
     text-align: center !important;
     color: #dbdbdb;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 footer a {
@@ -31,4 +31,17 @@ footer a {
 
 footer a:hover {
     color: #57d4c9;
+}
+
+.btn-dark {
+    background: #191c3b;
+    color: #57d4c9;
+    border: 1px #57d4c9 solid;
+    font-weight: bold;
+}
+
+.btn-dark:hover {
+    color: #191c3b;
+    background: #57d4c9;
+    border: 1px #57d4c9 solid;
 }
