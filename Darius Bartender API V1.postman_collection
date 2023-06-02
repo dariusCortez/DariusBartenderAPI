@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "12472b79-7f8b-47d7-9cfc-4b688933d55e",
+		"name": "Darius Bartender API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1121550",
+		"_collection_link": "https://lively-satellite-184236.postman.co/workspace/Team-Workspace~cfe2053d-13b7-4ae6-8c36-aaa122a3394a/collection/1121550-12472b79-7f8b-47d7-9cfc-4b688933d55e?action=share&creator=1121550&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "METODO",
+			"item": [
+				{
+					"name": "GET Metodo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Metodo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Metodo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Metodo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"metodo\": \"Metodo Nuevo\",\r\n    \"descripcion\": \"Son aquellos metodos nuevos en la lista.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Metodo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Metodo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Metodo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"metodo\": \"Metodo Actualizado\",\r\n    \"descripcion\": \"Son aquellos metodos actualizados en la lista.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Metodo/6a0e552c-876a-4d37-a5da-d80ef028cc6d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Metodo",
+								"6a0e552c-876a-4d37-a5da-d80ef028cc6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Metodo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Metodo/6a0e552c-876a-4d37-a5da-d80ef028cc6d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Metodo",
+								"6a0e552c-876a-4d37-a5da-d80ef028cc6d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRISTALERIA",
+			"item": [
+				{
+					"name": "GET Cristaleria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Cristaleria/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Cristaleria",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Cristaleria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Vaso Calavera\",\r\n    \"capacidadOz\": 5,\r\n    \"servicio\": \"Jugos, gaseosas, tragos con Vodka.\",\r\n    \"tipo\": \"Específica\",\r\n    \"imagen\": \"https://loremflickr.com/640/480\",\r\n    \"isBlocked\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Cristaleria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Cristaleria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Cristaleria/idCristaleria",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Vaso Calavera 360\",\r\n    \"capacidadOz\": 10,\r\n    \"servicio\": \"Jugos, gaseosas, tragos con Vodka.\",\r\n    \"tipo\": \"Específica\",\r\n    \"imagen\": \"https://loremflickr.com/640/480\",\r\n    \"isBlocked\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Cristaleria/85013117-79e2-453e-a603-afbf33c29e04",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Cristaleria",
+								"85013117-79e2-453e-a603-afbf33c29e04"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Cristaleria/idCristaleria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Cristaleria/85013117-79e2-453e-a603-afbf33c29e04",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Cristaleria",
+								"85013117-79e2-453e-a603-afbf33c29e04"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BEBIDA",
+			"item": [
+				{
+					"name": "GET Bebida",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Bebida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Bebida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Bebida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bebida\": \"Nueva Bebida\",\r\n    \"componentes\": \"Componentes de la nueva bebida.\",\r\n    \"origen\": \"Origen de pais\",\r\n    \"grado\": 70\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Bebida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Bebida"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Bebida",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bebida\": \"Bebida Actualizacion\",\r\n    \"componentes\": \"Componentes de la bebida Actualizada.\",\r\n    \"origen\": \"Origen de pais actualizado\",\r\n    \"grado\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Bebida/ca4159c1-0c8e-4ec2-8247-21a422a9bc4e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Bebida",
+								"ca4159c1-0c8e-4ec2-8247-21a422a9bc4e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Bebida",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/Bebida/ca4159c1-0c8e-4ec2-8247-21a422a9bc4e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"Bebida",
+								"ca4159c1-0c8e-4ec2-8247-21a422a9bc4e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,6 +1,6 @@
 {
     "name": "bartenderdarius",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -21,6 +21,7 @@
     "dependencies": {
         "@faker-js/faker": "^8.0.2",
         "@hapi/boom": "^10.0.1",
+        "cors": "^2.8.5",
         "ejs": "^3.1.9",
         "express": "^4.18.2",
         "express-sslify": "^1.2.0",
