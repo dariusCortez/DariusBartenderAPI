@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const boom = require('@hapi/boom');
 
 class MetodoService {
 
@@ -57,7 +58,7 @@ class MetodoService {
     async findOne(id) {
         const index = this.metodos.findIndex(item => item.id === id);
         if (index === -1) {
-            throw new Error('Método not found');
+            throw boom.notFound('Método not found');
         } else {
             return this.metodos.find(item => item.id === id);
         }
@@ -66,7 +67,7 @@ class MetodoService {
     async update(id, changes) {
         const index = this.metodos.findIndex(item => item.id === id);
         if (index === -1) {
-            throw new Error('Método not found');
+            throw boom.notFound('Método not found');
         } else {
             const metodo = this.metodos[index];
             this.metodos[index] = {
@@ -80,7 +81,7 @@ class MetodoService {
     async delete(id) {
         const index = this.metodos.findIndex(item => item.id === id);
         if (index === -1) {
-            throw new Error('Método not found');
+            throw boom.notFound('Método not found');
         } else {
             this.metodos.splice(index, 1);
             return { id };

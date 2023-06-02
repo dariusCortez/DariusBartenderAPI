@@ -1,7 +1,8 @@
 const express = require("express");
 const routerApi = require('./routes');
 const path = require('path');
-//const enforce = require('express-sslify');
+const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler')
+    //const enforce = require('express-sslify');
 
 
 
@@ -26,6 +27,9 @@ app.get("/", (req, res) => {
 });
 
 routerApi(app);
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log('Puerto:', port);

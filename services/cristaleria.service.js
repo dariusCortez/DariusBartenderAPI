@@ -1,4 +1,6 @@
 const { faker } = require('@faker-js/faker');
+const boom = require('@hapi/boom');
+
 class CristaleriaService {
 
     constructor() {
@@ -13,7 +15,8 @@ class CristaleriaService {
                 capacidadOz: 10,
                 servicio: "Jugos, Gaseosas y coctails.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -21,15 +24,16 @@ class CristaleriaService {
                 capacidadOz: 8,
                 servicio: "Jugos, Gaseosas se utiliza en eventos.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
                 nombre: "Vaso corto - Wiskero - Old fashioned - On the rock",
                 capacidadOz: 7,
                 servicio: "Wiskey, coctails, licor con hielo.",
-                tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -37,7 +41,8 @@ class CristaleriaService {
                 capacidadOz: [5, 3],
                 servicio: "coctails sin hielo.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -45,7 +50,8 @@ class CristaleriaService {
                 capacidadOz: 6.5,
                 servicio: "Vino o Agua.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -53,7 +59,8 @@ class CristaleriaService {
                 capacidadOz: [6.5, 12],
                 servicio: "Coñak o Brandi.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -61,7 +68,8 @@ class CristaleriaService {
                 capacidadOz: 12,
                 servicio: "Cerveza.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -69,7 +77,8 @@ class CristaleriaService {
                 capacidadOz: 7,
                 servicio: "Champagne.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -77,7 +86,8 @@ class CristaleriaService {
                 capacidadOz: 2.5,
                 servicio: "Shots, Tequilas y otros.",
                 tipo: "Indispensable",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -85,7 +95,8 @@ class CristaleriaService {
                 capacidadOz: [15, 18],
                 servicio: "Coctail de la casa.",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -93,7 +104,8 @@ class CristaleriaService {
                 capacidadOz: 6,
                 servicio: "Margaritas.",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -101,7 +113,8 @@ class CristaleriaService {
                 capacidadOz: 12,
                 servicio: "Coctail con helado / Milkshake.",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -109,7 +122,8 @@ class CristaleriaService {
                 capacidadOz: 10,
                 servicio: "Coctails cremosos.",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -117,7 +131,8 @@ class CristaleriaService {
                 capacidadOz: 8.5,
                 servicio: "Cafeteria especial.",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             },
             {
                 id: faker.datatype.uuid(),
@@ -125,7 +140,8 @@ class CristaleriaService {
                 capacidadOz: 10,
                 servicio: "Jugos, gaseosas, tragos de vaso largo. Nota: Encaja en la coctelera Boston",
                 tipo: "Específica",
-                imagen: ""
+                imagen: faker.image.imageUrl(),
+                isBlocked: faker.datatype.boolean()
             }
         ];
     }
@@ -148,18 +164,21 @@ class CristaleriaService {
     }
 
     async findOne(id) {
-        const index = this.cristalerias.findIndex(item => item.id === id);
-        if (index === -1) {
-            throw new Error('Cristaleria not found');
+        const cristaleria = this.cristalerias.find(item => item.id === id);
+        if (!cristaleria) {
+            throw boom.notFound('Cristaleria not found');
         } else {
-            return this.cristalerias.find(item => item.id === id);
+            if (cristaleria.isBlocked) {
+                throw boom.conflict('Cristaleria is blocked');
+            }
+            return cristaleria;
         }
     }
 
     async update(id, changes) {
         const index = this.cristalerias.findIndex(item => item.id === id);
         if (index === -1) {
-            throw new Error('Cristaleria not Found');
+            throw boom.notFound('Cristaleria not found');
         } else {
             const cristaleria = this.cristalerias[index];
             this.cristalerias[index] = {
@@ -173,7 +192,7 @@ class CristaleriaService {
     async delete(id) {
         const index = this.cristalerias.findIndex(item => item.id === id);
         if (index === -1) {
-            throw new Error('Cristaleria not Found');
+            throw boom.notFound('Cristaleria not found');
         } else {
             this.cristalerias.splice(index, 1);
             return { id };
