@@ -8,7 +8,7 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 
 const app = express();
 const port = 3000;
-const version = "1.2";
+const version = "1.4";
 
 
 app.use(express.json());

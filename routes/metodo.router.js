@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
 const MetodoService = require('./../services/medoto.service');
 const service = new MetodoService();
+
+const validatorHandler = require('./../middlewares/validator.handler');
+const { getMetodoSchema, createBebidaSchema, updateBebidaSchema } = require('./../schemas/metodo.schema');
 
 
 router.get("/", async(req, res) => {
@@ -9,44 +13,53 @@ router.get("/", async(req, res) => {
     res.json(metodos);
 });
 
-router.get("/:id", async(req, res, next) => {
-    try {
-        const { id } = req.params;
-        const metodo = await service.findOne(id);
-        res.json(metodo);
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.post("/", async(req, res) => {
-    const body = req.body;
-    const newMetodo = await service.create(body);
-    res.json({
-        message: "Create Método",
-        data: newMetodo
+router.get("/:id",
+    validatorHandler(getMetodoSchema, 'params'),
+    async(req, res, next) => {
+        try {
+            const { id } = req.params;
+            const metodo = await service.findOne(id);
+            res.json(metodo);
+        } catch (error) {
+            next(error);
+        }
     });
-});
 
-router.patch("/:idMetodo", async(req, res, next) => {
-    try {
-        const { idMetodo } = req.params;
+router.post("/",
+    validatorHandler(createBebidaSchema, 'body'),
+    async(req, res) => {
         const body = req.body;
-        const metodo = await service.update(idMetodo, body);
-        res.json(metodo);
-    } catch (error) {
-        next(error);
-    }
-});
+        const newMetodo = await service.create(body);
+        res.json({
+            message: "Create Método",
+            data: newMetodo
+        });
+    });
 
-router.delete("/:idMetodo", async(req, res, next) => {
-    try {
-        const { idMetodo } = req.params;
-        const respuesta = await service.delete(idMetodo);
-        res.json(respuesta);
-    } catch (error) {
-        next(error);
-    }
-});
+router.patch("/:id",
+    validatorHandler(getMetodoSchema, 'params'),
+    validatorHandler(updateBebidaSchema, 'body'),
+    async(req, res, next) => {
+        try {
+            const { id } = req.params;
+            const body = req.body;
+            const metodo = await service.update(id, body);
+            res.json(metodo);
+        } catch (error) {
+            next(error);
+        }
+    });
+
+router.delete("/:id",
+    validatorHandler(getMetodoSchema, 'params'),
+    async(req, res, next) => {
+        try {
+            const { id } = req.params;
+            const respuesta = await service.delete(id);
+            res.json(respuesta);
+        } catch (error) {
+            next(error);
+        }
+    });
 
 module.exports = router;
