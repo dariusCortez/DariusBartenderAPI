@@ -9,15 +9,13 @@ router.get("/", async(req, res) => {
     res.json(metodos);
 });
 
-router.get("/:id", async(req, res) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         const metodo = await service.findOne(id);
         res.json(metodo);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 
@@ -30,28 +28,24 @@ router.post("/", async(req, res) => {
     });
 });
 
-router.patch("/:idMetodo", async(req, res) => {
+router.patch("/:idMetodo", async(req, res, next) => {
     try {
         const { idMetodo } = req.params;
         const body = req.body;
         const metodo = await service.update(idMetodo, body);
         res.json(metodo);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        });
+        next(error);
     }
 });
 
-router.delete("/:idMetodo", async(req, res) => {
+router.delete("/:idMetodo", async(req, res, next) => {
     try {
         const { idMetodo } = req.params;
         const respuesta = await service.delete(idMetodo);
         res.json(respuesta);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 

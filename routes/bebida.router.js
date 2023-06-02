@@ -10,15 +10,13 @@ router.get("/", async(req, res) => {
     res.json(bebidas);
 });
 
-router.get("/:id", async(req, res) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         const bebida = await service.findOne(id);
         res.json(bebida);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 
@@ -28,27 +26,23 @@ router.post("/", async(req, res) => {
     res.json(newBebida);
 });
 
-router.patch("/:idBebida", async(req, res) => {
+router.patch("/:idBebida", async(req, res, next) => {
     try {
         const { idBebida } = req.params;
         const body = req.body;
         const bebida = await service.update(idBebida, body);
         res.json(bebida);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
-router.delete("/:idBebida", async(req, res) => {
+router.delete("/:idBebida", async(req, res, next) => {
     try {
         const { idBebida } = req.params
         const respuesta = await service.delete(idBebida);
         res.json(respuesta);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 

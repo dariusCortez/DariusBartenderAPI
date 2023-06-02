@@ -10,15 +10,13 @@ router.get("/", async(req, res) => {
     res.json(cristaleria);
 });
 
-router.get("/:id", async(req, res) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const { id } = req.params;
         const cristaleria = await service.findOne(id);
         res.json(cristaleria);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 
@@ -31,28 +29,24 @@ router.post("/", async(req, res) => {
     });
 });
 
-router.patch("/:idCristaleria", async(req, res) => {
+router.patch("/:idCristaleria", async(req, res, next) => {
     try {
         const { idCristaleria } = req.params;
         const body = req.body;
         const cristaleria = await service.update(idCristaleria, body);
         res.json(cristaleria);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        });
+        next(error);
     }
 });
 
-router.delete("/:idCristaleria", async(req, res) => {
+router.delete("/:idCristaleria", async(req, res, next) => {
     try {
         const { idCristaleria } = req.params;
         const respuesta = await service.delete(idCristaleria);
         res.json(respuesta);
     } catch (error) {
-        res.status(404).json({
-            message: error.message
-        })
+        next(error);
     }
 });
 
